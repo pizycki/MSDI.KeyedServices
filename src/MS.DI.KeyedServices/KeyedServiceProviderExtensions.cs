@@ -1,9 +1,9 @@
-﻿using Microsoft.DependencyInjection.KeyedServices.Contracts;
+﻿using MS.DI.KeyedServices.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace Microsoft.DependencyInjection.KeyedServices
+namespace MS.DI.KeyedServices
 {
     /// <summary>
     /// Set of extensions for <see cref="IServiceCollection"/> to ease use of <see cref="KeyedServiceProvider{TService, TKey}"/> type.

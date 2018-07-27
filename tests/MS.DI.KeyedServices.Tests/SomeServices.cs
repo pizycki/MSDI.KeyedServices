@@ -1,8 +1,7 @@
-﻿using Microsoft.DependencyInjection.KeyedServices;
-using Microsoft.DependencyInjection.KeyedServices.Contracts;
+﻿using MS.DI.KeyedServices.Contracts;
 using System.Collections.Generic;
 
-namespace Microsoft.DependencyInjection.KeyedServices.Tests
+namespace MS.DI.KeyedServices.Tests
 {
     #region FooBarQux
 

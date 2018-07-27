@@ -1,4 +1,4 @@
-﻿namespace Microsoft.DependencyInjection.KeyedServices.Contracts
+﻿namespace MS.DI.KeyedServices.Contracts
 {
     /// <summary>
     /// Provides registered services under the same interface, but different key.

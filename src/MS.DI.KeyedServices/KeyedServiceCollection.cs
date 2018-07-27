@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Microsoft.DependencyInjection.KeyedServices
+namespace MS.DI.KeyedServices
 {
     /// <summary>
     /// Set of registered services under the same contract, distinguished by key.

@@ -1,7 +1,7 @@
-﻿using Microsoft.DependencyInjection.KeyedServices.Contracts;
+﻿using MS.DI.KeyedServices.Contracts;
 using System;
 
-namespace Microsoft.DependencyInjection.KeyedServices
+namespace MS.DI.KeyedServices
 {
     /// <summary>
     /// Provides registered services under the same contract, but distinguished with key.

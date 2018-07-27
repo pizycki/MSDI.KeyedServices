@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using Xunit;
 
-namespace Microsoft.DependencyInjection.KeyedServices.Tests.KeyedServiceProvider.Extensions
+namespace MS.DI.KeyedServices.Tests.KeyedServiceProvider.Extensions
 {
     public class AddKeyedServiceCollectionTests
     {

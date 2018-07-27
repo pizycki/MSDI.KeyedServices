@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using Microsoft.DependencyInjection.KeyedServices.Contracts;
+using MS.DI.KeyedServices.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Microsoft.DependencyInjection.KeyedServices.Tests.KeyedServiceProvider.Extensions
+namespace MS.DI.KeyedServices.Tests.KeyedServiceProvider.Extensions
 {
     public class AddKeyedServiceTests
     {

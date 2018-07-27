@@ -49,7 +49,13 @@ namespace Microsoft.DependencyInjection.KeyedServices
         public static ServiceDescriptor GetKeyedServiceCollectionDescriptor<TService, TKey>(this IServiceCollection services) =>
             services.FirstOrDefault(sd => sd.ServiceType == typeof(KeyedServiceCollection<TService, TKey>));
 
-
+        /// <summary>
+        /// Registers <see cref="KeyedServiceCollection{TService, TKey}"/> instance in <see cref="IServiceCollection"/> as singleton.
+        /// </summary>
+        /// <typeparam name="TService">Implementation contract of registrations kept in collection</typeparam>
+        /// <typeparam name="TKey">Type of key we will distinguish implementations with</typeparam>
+        /// <param name="services">Services collection</param>
+        /// <returns>Registered instance</returns>
         public static KeyedServiceCollection<TService, TKey> AddKeyedServiceCollection<TService, TKey>(
             this IServiceCollection services)
         {
@@ -58,9 +64,23 @@ namespace Microsoft.DependencyInjection.KeyedServices
             return collection;
         }
 
+        /// <summary>
+        /// Searches for first registered instance of <see cref="KeyedServiceCollection{TService, TKey}"/>.
+        /// </summary>
+        /// <typeparam name="TService">Implementation contract of registrations kept in collection</typeparam>
+        /// <typeparam name="TKey">Type of key we will distinguish implementations with</typeparam>
+        /// <param name="services">Services collection</param>
+        /// <returns>Registered instance</returns>
         public static KeyedServiceCollection<TService, TKey> GetKeyedServiceCollection<TService, TKey>(this IServiceCollection services) =>
             (KeyedServiceCollection<TService, TKey>)GetKeyedServiceCollectionDescriptor<TService, TKey>(services)?.ImplementationInstance;
 
+        /// <summary>
+        /// Werifies that any service is registered as <see cref="IKeyedServiceProvider{TService, TKey}"/>.
+        /// </summary>
+        /// <typeparam name="TService">Implementation contract</typeparam>
+        /// <typeparam name="TKey">Type of key we will distinguish implementations with</typeparam>
+        /// <param name="services">Services collection</param>
+        /// <returns>True or false</returns>
         public static bool IsKeyedServiceProviderRegistered<TService, TKey>(this IServiceCollection services) =>
             services.Any(sd => sd.ServiceType == typeof(IKeyedServiceProvider<TService, TKey>));
 

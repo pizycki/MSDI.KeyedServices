@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <RootNamespace>MS.DI.KeyedServices</RootNamespace>
+    <PackageId>MS.DI.KeyedServices</PackageId>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Description>Plugin for Microsoft.Extensions.DependencyInjection enabling registration of multiple service implemantations under the same interface.</Description>
+    <RepositoryUrl>https://github.com/pizycki/MS.DI.KeyedServices</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>ioc; di; dependency; injection; keyed; services; Microsoft.Extensions.DependencyInjection; Microsoft</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

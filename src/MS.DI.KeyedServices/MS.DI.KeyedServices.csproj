@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/pizycki/MS.DI.KeyedServices</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>ioc; di; dependency; injection; keyed; services; Microsoft.Extensions.DependencyInjection; Microsoft</PackageTags>
+    <Version>1.0.0-rc</Version>
   </PropertyGroup>
 
   <ItemGroup>

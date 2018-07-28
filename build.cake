@@ -32,13 +32,14 @@ void CreateNuget() {
 }
 
 void PublishNuget() {
-    DotNetCoreNuGetPush("MS.DI.KeyedServices.nupkg", 
-        new DotNetCoreNuGetPushSettings
-        {
+    DotNetCoreNuGetPush("./artifacts/MS.DI.KeyedServices.*.nupkg",
+        new DotNetCoreNuGetPushSettings {
             Source = "https://www.nuget.org/api/v2/package/",
-            ApiKey = "TODO"
+            ApiKey = GetNugetApiKey()
         });
 }
+
+string GetNugetApiKey() => EnvironmentVariable("MS_DI_KEYED_SERVICES_NUGET_APIKEY");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -66,6 +67,8 @@ Task("Run-Unit-Tests").Does(RunUnitTests);
 Task("Create-Nuget").Does(CreateNuget);
 
 Task("Publish-Nuget").Does(PublishNuget);
+
+Task("Print-Nuget-ApiKey").Does(() => Information(GetNugetApiKey()));
 
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS

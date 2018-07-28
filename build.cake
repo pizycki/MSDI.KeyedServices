@@ -11,10 +11,13 @@ var configuration = Argument("configuration", "Release");
 
 // Define directories.
 var sln = File("./MS.DI.KeyedServices.sln");
+var artifacts = Directory("./artifacts");
 
 //////////////////////////////////////////////////////////////////////
 // Methods
 //////////////////////////////////////////////////////////////////////
+
+void RestoreNugets() => NuGetRestore(sln);
 
 void BuildOnWindows() => MSBuild(sln, settings => settings.SetConfiguration(configuration));
 
@@ -26,20 +29,29 @@ void CreateNuget() {
     DotNetCorePack("./src/MS.DI.KeyedServices",
         new DotNetCorePackSettings {
             Configuration = "Release",
-            OutputDirectory = "./artifacts/",
+            OutputDirectory = artifacts.Path,
             NoBuild = true
         });
 }
 
-void PublishNuget() {
-    DotNetCoreNuGetPush("./artifacts/MS.DI.KeyedServices.*.nupkg",
-        new DotNetCoreNuGetPushSettings {
-            Source = "https://www.nuget.org/api/v2/package/",
-            ApiKey = GetNugetApiKey()
-        });
+void PushPackageToNuget() {
+
+    var packageFiles = GetFiles(artifacts.Path + "/*.nupkg");
+    Information("Found {0} .nupkg file(s).", packageFiles.Count());
+    foreach (var nupkg in packageFiles)
+    {       
+        DotNetCoreNuGetPush(nupkg.FullPath,
+            new DotNetCoreNuGetPushSettings {
+                Source = "https://www.nuget.org/api/v2/package/",
+                ApiKey = GetNugetApiKey()
+            });
+    }
+
 }
 
 string GetNugetApiKey() => EnvironmentVariable("MS_DI_KEYED_SERVICES_NUGET_APIKEY");
+
+void CleanArtifactsDirectory() => CleanDirectory(artifacts.Path);
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -51,9 +63,7 @@ Task("Clean")
         CleanDirectories("./tests/**/netcoreapp*");
     });
 
-Task("Restore-NuGet-Packages")
-    .IsDependentOn("Clean")
-    .Does(() => NuGetRestore(sln));
+Task("Restore-NuGet-Packages").Does(RestoreNugets);
 
 Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
@@ -64,18 +74,35 @@ Task("Build")
 
 Task("Run-Unit-Tests").Does(RunUnitTests);
 
-Task("Create-Nuget").Does(CreateNuget);
+Task("Run-Tests")
+    .IsDependentOn("Run-Unit-Tests");
 
-Task("Publish-Nuget").Does(PublishNuget);
+Task("Create-Nuget-Package").Does(CreateNuget);
+
+Task("Push-Package-ToNuget").Does(PushPackageToNuget);
 
 Task("Print-Nuget-ApiKey").Does(() => Information(GetNugetApiKey()));
+
+Task("Clean-Artifacts").Does(CleanArtifactsDirectory);
 
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
+Task("Rebuild")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Build");
+
 Task("Default")
+    .IsDependentOn("Rebuild")
     .IsDependentOn("Run-Unit-Tests");
+
+Task("Publish-ToNuget")
+    .IsDependentOn("Rebuild")
+    .IsDependentOn("Run-Unit-Tests")
+    .IsDependentOn("Clean-Artifacts")
+    .IsDependentOn("Create-Nuget-Package")
+    .IsDependentOn("Push-Package-ToNuget");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

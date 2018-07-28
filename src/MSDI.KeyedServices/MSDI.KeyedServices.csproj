@@ -2,14 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <RootNamespace>MS.DI.KeyedServices</RootNamespace>
-    <PackageId>MS.DI.KeyedServices</PackageId>
+    <RootNamespace>MSDI.KeyedServices</RootNamespace>
+    <PackageId>MSDI.KeyedServices</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Plugin for Microsoft.Extensions.DependencyInjection enabling registration of multiple service implemantations under the same interface.</Description>
-    <RepositoryUrl>https://github.com/pizycki/MS.DI.KeyedServices</RepositoryUrl>
+    <RepositoryUrl>https://github.com/pizycki/MSDI.KeyedServices</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>ioc; di; dependency; injection; keyed; services; Microsoft.Extensions.DependencyInjection; Microsoft</PackageTags>
+    <PackageTags>msdi; ioc; di; dependency; injection; keyed; services; Microsoft.Extensions.DependencyInjection; Microsoft</PackageTags>
     <Version>1.0.0-rc</Version>
+    <Authors>MSDI.KeyedServices</Authors>
+    <Product>MSDI.KeyedServices</Product>
   </PropertyGroup>
 
   <ItemGroup>

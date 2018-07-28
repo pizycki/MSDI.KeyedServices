@@ -10,7 +10,7 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var sln = File("./MS.DI.KeyedServices.sln");
+var sln = File("./MSDI.KeyedServices.sln");
 var artifacts = Directory("./artifacts");
 
 //////////////////////////////////////////////////////////////////////
@@ -23,10 +23,10 @@ void BuildOnWindows() => MSBuild(sln, settings => settings.SetConfiguration(conf
 
 void BuildWithMono() => XBuild(sln, settings => settings.SetConfiguration(configuration));
 
-void RunUnitTests() => DotNetCoreTest("./tests/MS.DI.KeyedServices.Tests/MS.DI.KeyedServices.Tests.csproj");
+void RunUnitTests() => DotNetCoreTest("./tests/MSDI.KeyedServices.Tests/MSDI.KeyedServices.Tests.csproj");
 
 void CreateNuget() {
-    DotNetCorePack("./src/MS.DI.KeyedServices",
+    DotNetCorePack("./src/MSDI.KeyedServices",
         new DotNetCorePackSettings {
             Configuration = "Release",
             OutputDirectory = artifacts.Path,

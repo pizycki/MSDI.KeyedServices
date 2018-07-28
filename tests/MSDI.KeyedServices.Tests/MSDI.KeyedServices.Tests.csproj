@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyName>MS.DI.KeyedServices.Tests</AssemblyName>
+    <AssemblyName>MSDI.KeyedServices.Tests</AssemblyName>
     <RootNamespace>MS.DI.KeyedServices.Tests</RootNamespace>
   </PropertyGroup>
 
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MS.DI.KeyedServices\MS.DI.KeyedServices.csproj" />
+    <ProjectReference Include="..\..\src\MSDI.KeyedServices\MSDI.KeyedServices.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,6 +12,7 @@
     <Version>1.0.0-rc</Version>
     <Authors>MSDI.KeyedServices</Authors>
     <Product>MSDI.KeyedServices</Product>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

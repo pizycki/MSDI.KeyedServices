@@ -1,7 +1,7 @@
 # MSDI Keyed Services
 _Microsoft Dependency Injection Keyed Services_
 
-[![NuGet](https://img.shields.io/nuget/v/MSDI.KeyedServices.svg)](https://www.nuget.org/packages/MSDI.KeyedServices)
+[![NuGet](https://img.shields.io/nuget/v/MSDI.KeyedServices.svg)](https://www.nuget.org/packages/MSDI.KeyedServices)[![Build status](https://ci.appveyor.com/api/projects/status/af95g68wsxrysv5a/branch/master?svg=true)](https://ci.appveyor.com/project/pizycki/msdi-keyedservices/branch/master)
 
 
 Plugin for [Microsoft.Extensions.DependencyInjection](https://github.com/aspnet/DependencyInjection) enabling registration of multiple service implemantations under the same interface.

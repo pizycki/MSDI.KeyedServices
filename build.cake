@@ -13,6 +13,34 @@ var configuration = Argument("configuration", "Release");
 var sln = File("./MS.DI.KeyedServices.sln");
 
 //////////////////////////////////////////////////////////////////////
+// Methods
+//////////////////////////////////////////////////////////////////////
+
+void BuildOnWindows() => MSBuild(sln, settings => settings.SetConfiguration(configuration));
+
+void BuildWithMono() => XBuild(sln, settings => settings.SetConfiguration(configuration));
+
+void RunUnitTests() => DotNetCoreTest("./tests/MS.DI.KeyedServices.Tests/MS.DI.KeyedServices.Tests.csproj");
+
+void CreateNuget() {
+    DotNetCorePack("./src/MS.DI.KeyedServices",
+        new DotNetCorePackSettings {
+            Configuration = "Release",
+            OutputDirectory = "./artifacts/",
+            NoBuild = true
+        });
+}
+
+void PublishNuget() {
+    DotNetCoreNuGetPush("MS.DI.KeyedServices.nupkg", 
+        new DotNetCoreNuGetPushSettings
+        {
+            Source = "https://www.nuget.org/api/v2/package/",
+            ApiKey = "TODO"
+        });
+}
+
+//////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
@@ -24,30 +52,20 @@ Task("Clean")
 
 Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
-    .Does(() => {
-        NuGetRestore(sln);
-    });
+    .Does(() => NuGetRestore(sln));
 
 Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() => {
-        if(IsRunningOnWindows()) {
-            // Use MSBuild
-            MSBuild(sln, settings =>
-                settings.SetConfiguration(configuration));
-        }
-        else {
-            // Use XBuild
-            XBuild(sln, settings =>
-                settings.SetConfiguration(configuration));
-        }
+        if (IsRunningOnWindows()) BuildOnWindows();
+        else BuildWithMono();
     });
 
-Task("Run-Unit-Tests")
-    .IsDependentOn("Build")
-    .Does(() => {
-        DotNetCoreTest("./tests/MS.DI.KeyedServices.Tests/MS.DI.KeyedServices.Tests.csproj");
-    });
+Task("Run-Unit-Tests").Does(RunUnitTests);
+
+Task("Create-Nuget").Does(CreateNuget);
+
+Task("Publish-Nuget").Does(PublishNuget);
 
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS

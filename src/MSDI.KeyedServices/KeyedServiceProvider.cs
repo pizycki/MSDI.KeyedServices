@@ -1,7 +1,7 @@
-﻿using MS.DI.KeyedServices.Contracts;
+﻿using MSDI.KeyedServices.Contracts;
 using System;
 
-namespace MS.DI.KeyedServices
+namespace MSDI.KeyedServices
 {
     /// <summary>
     /// Provides registered services under the same contract, but distinguished with key.

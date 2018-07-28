@@ -1,4 +1,4 @@
-﻿namespace MS.DI.KeyedServices.Contracts
+﻿namespace MSDI.KeyedServices.Contracts
 {
     /// <summary>
     /// Provides registered services under the same interface, but different key.

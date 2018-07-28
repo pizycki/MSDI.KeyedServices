@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace MS.DI.KeyedServices.Tests
+namespace MSDI.KeyedServices.Tests
 {
     public class GetKeyedServiceCollectionDescriptorTests
     {

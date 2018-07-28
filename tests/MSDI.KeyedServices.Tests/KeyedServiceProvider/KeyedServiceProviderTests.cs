@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using MS.DI.KeyedServices.Contracts;
+using MSDI.KeyedServices.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace MS.DI.KeyedServices.Tests
+namespace MSDI.KeyedServices.Tests
 {
     public class KeyedServiceProviderFacts
     {

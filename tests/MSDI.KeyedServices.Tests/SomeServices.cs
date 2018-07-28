@@ -1,7 +1,7 @@
-﻿using MS.DI.KeyedServices.Contracts;
+﻿using MSDI.KeyedServices.Contracts;
 using System.Collections.Generic;
 
-namespace MS.DI.KeyedServices.Tests
+namespace MSDI.KeyedServices.Tests
 {
     #region FooBarQux
 

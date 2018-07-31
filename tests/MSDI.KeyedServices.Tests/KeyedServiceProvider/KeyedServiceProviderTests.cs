@@ -13,7 +13,7 @@ namespace MSDI.KeyedServices.Tests
         {
             // Arrange
             var services = new ServiceCollection();
-            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo);
+            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo, sc => { });
             var provider = services.BuildServiceProvider();
 
             // Act and Assert
@@ -25,7 +25,7 @@ namespace MSDI.KeyedServices.Tests
         {
             // Arrange
             var services = new ServiceCollection();
-            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo);
+            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo, sc => { });
             var provider = services.BuildServiceProvider();
 
             // Act

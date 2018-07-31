@@ -12,7 +12,7 @@ namespace MSDI.KeyedServices.Tests.KeyedServiceProvider.Extensions
         {
             var services = new ServiceCollection();
 
-            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo);
+            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo, sc => { });
 
             var provider = services.BuildServiceProvider();
             var keyedProvider = provider.GetService<IKeyedServiceProvider<IContract, string>>();
@@ -24,7 +24,7 @@ namespace MSDI.KeyedServices.Tests.KeyedServiceProvider.Extensions
         {
             var services = new ServiceCollection();
 
-            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo);
+            services.AddKeyedService<IContract, Foo, string>(ContractKeys.Foo, sc => { });
 
             var provider = services.BuildServiceProvider();
             var keyedServiceCollection = provider.GetService<KeyedServiceCollection<IContract, string>>();

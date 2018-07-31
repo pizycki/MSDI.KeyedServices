@@ -21,18 +21,19 @@ Register service with one extensions method call passing key and registration ac
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	services.AddKeyedService<IGreeter, EnglishGreeter, Language>(Language.En, 
-		serviceCollection => 
-		{            
-			sc.AddTransient<EnglishGreeter>();
-		});
+    services.AddKeyedService<IGreeter, EnglishGreeter, Language>(
+        key: Language.En, 
+        registration: serviceCollection => 
+        {            
+        	sc.AddTransient<EnglishGreeter>();
+        });
 }
 ```
 
 Or do it separately
 
 ```csharp
-services.AddKeyedService<IGreeter, PolishGreeter, Language>(Language.Pl, registration: null);
+services.AddKeyedService<IGreeter, PolishGreeter, Language>(key: Language.Pl, registration: null);
 services.AddTransient<PolishGreeter>();
 ```
 

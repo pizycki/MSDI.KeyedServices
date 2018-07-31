@@ -104,6 +104,11 @@ Task("Publish-ToNuget")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Push-Package-ToNuget");
 
+Task("Publish-ToNuget-AppVeyor")    
+    .IsDependentOn("Clean-Artifacts")
+    .IsDependentOn("Create-Nuget-Package")
+    .IsDependentOn("Push-Package-ToNuget");
+
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
 //////////////////////////////////////////////////////////////////////

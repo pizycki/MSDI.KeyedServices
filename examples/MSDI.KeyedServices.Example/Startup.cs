@@ -29,7 +29,7 @@ namespace MSDI.KeyedServices.Example
             });
 
             // You can also register your implementation type seperetly
-            services.AddKeyedService<IGreeter, PolishGreeter, Language>(Language.Pl, null);
+            services.AddKeyedService<IGreeter, PolishGreeter, Language>(Language.Pl, registration: null);
             services.AddTransient<PolishGreeter>();
 
             // That's it!

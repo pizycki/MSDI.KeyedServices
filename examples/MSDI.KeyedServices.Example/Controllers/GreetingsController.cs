@@ -29,5 +29,17 @@ namespace MSDI.KeyedServices.Example.Controllers
 
             return BadRequest("Unknown language");
         }
+
+        [HttpGet, Route("api/hello/en")]
+        public IActionResult SayHelloEn()
+        {
+            var keyedServiceProvider =
+                _serviceProvider.GetService(typeof(IKeyedServiceProvider<IGreeter, Language>)) as IKeyedServiceProvider<IGreeter, Language>;
+
+            IGreeter greeter = keyedServiceProvider.GetKeyedService(Language.En);
+
+            string greetings = greeter.Greet();
+            return Ok(greetings);
+        }
     }
 }

@@ -20,12 +20,12 @@ namespace MSDI.KeyedServices
         /// <typeparam name="TKey">Type of key we will distinguish implementations with</typeparam>
         /// <param name="services">Collection of services used to build instance of <see cref="IServiceProvider"/>.</param>
         /// <param name="key">Key to distiguish implementation</param>
-        /// <param name="registerImplementation">The way we'd like our implementation type to be registered as</param>
+        /// <param name="registration">The way we'd like our implementation type to be registered as</param>
         /// <returns>Reference to collection passed in as argument</returns>
         public static IServiceCollection AddKeyedService<TService, TImplementation, TKey>(
             this IServiceCollection services,
             TKey key,
-            Action<IServiceCollection> registerImplementation = null)
+            Action<IServiceCollection> registration)
         {
             var implementationType = typeof(TImplementation);
 
@@ -34,7 +34,7 @@ namespace MSDI.KeyedServices
             collection.Add(key, implementationType);
 
             // Register type if the register action is passed in
-            registerImplementation?.Invoke(services);
+            registration?.Invoke(services);
 
             if (!services.IsKeyedServiceProviderRegistered<TService, TKey>())
                 services.AddSingleton<IKeyedServiceProvider<TService, TKey>, KeyedServiceProvider<TService, TKey>>();

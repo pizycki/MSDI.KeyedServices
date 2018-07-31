@@ -16,9 +16,80 @@ Install package
 dotnet add package MSDI.KeyedServices
 ```
 
-Register service
+Register service with one extensions method call passing key and registration action
 
 ```csharp
-// TODO
+public void ConfigureServices(IServiceCollection services)
+{
+	services.AddKeyedService<IGreeter, EnglishGreeter, Language>(Language.En, 
+		serviceCollection => 
+		{            
+			sc.AddTransient<EnglishGreeter>();
+		});
+}
+```
+
+Or do it separately
+
+```csharp
+services.AddKeyedService<IGreeter, PolishGreeter, Language>(Language.Pl, registration: null);
+services.AddTransient<PolishGreeter>();
+```
+
+ In both cases, remember to not wire implementation types with service they implement.
+
+To resolve registered services you have two options
+
+#### Dependency Injection via constructor
+
+```csharp
+[ApiController]
+public class GreetingsController : ControllerBase
+{
+    private readonly IKeyedServiceProvider<IGreeter, Language> _greeterProvider;
+
+    public GreetingsController(IKeyedServiceProvider<IGreeter, Language> greeterProvider)
+    {
+        _greeterProvider = greeterProvider;
+    }
+
+    [HttpGet, Route("api/hello")]
+    public IActionResult SayHello(string lang)
+    {
+        if (Enum.TryParse<Language>(lang, ignoreCase: true, result: out var language))
+        {
+            IGreeter greeter = _greeterProvider.GetKeyedService(language);
+            string greetings = greeter.Greet();
+            return Ok(greetings);
+        }
+
+        return BadRequest("Unknown language");
+    }
+}
+```
+
+To try it out for yourself, download this repository, run `MSDI.KeyedServices.Example` project and call `http://localhost:59792/api/hello?lang=pl` in your browser. 
+
+You can find presented examples in `GreetingsController`. Put some breakpoints and play around.
+
+#### Service Locator
+
+Sometime [service locator pattern](https://en.wikipedia.org/wiki/Service_locator_pattern) is a way to go. 
+
+Here is how you can use it with this library.
+
+```csharp
+[HttpGet, Route("api/hello/en")]
+public IActionResult SayHelloEn()
+{
+    var keyedServiceProvider =
+        _serviceProvider.GetService(typeof(IKeyedServiceProvider<IGreeter, Language>)) 
+        as IKeyedServiceProvider<IGreeter, Language>;
+
+    IGreeter greeter = keyedServiceProvider.GetKeyedService(Language.En);
+
+    string greetings = greeter.Greet();
+    return Ok(greetings);
+}
 ```
 

@@ -83,7 +83,5 @@ namespace MSDI.KeyedServices
         /// <returns>True or false</returns>
         public static bool IsKeyedServiceProviderRegistered<TService, TKey>(this IServiceCollection services) =>
             services.Any(sd => sd.ServiceType == typeof(IKeyedServiceProvider<TService, TKey>));
-
-
     }
 }

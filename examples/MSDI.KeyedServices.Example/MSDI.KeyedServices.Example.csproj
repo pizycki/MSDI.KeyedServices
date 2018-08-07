@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\src\MSDI.KeyedServices\MSDI.KeyedServices.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1605</NoWarn>
+  </PropertyGroup>
+
 </Project>

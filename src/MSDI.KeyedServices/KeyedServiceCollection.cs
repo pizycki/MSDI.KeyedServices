@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace MSDI.KeyedServices
 {
@@ -10,11 +11,11 @@ namespace MSDI.KeyedServices
     /// <typeparam name="TKey">Type of key we distinguish implementation types with</typeparam>
     public class KeyedServiceCollection<TService, TKey>
     {
-        private readonly ConcurrentDictionary<TKey, Type> _implementationTypes;
+        private readonly Dictionary<TKey, Type> _implementationTypes;
 
         public KeyedServiceCollection()
         {
-            _implementationTypes = new ConcurrentDictionary<TKey, Type>();
+            _implementationTypes = new Dictionary<TKey, Type>();
         }
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace MSDI.KeyedServices
         /// <param name="type"></param>
         public void Add(TKey key, Type type)
         {
-            _implementationTypes.AddOrUpdate(key, type, updateValueFactory: ReplaceType);
+            _implementationTypes.Add(key, type);
         }
 
         /// <summary>

@@ -24,8 +24,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddKeyedService<IGreeter, EnglishGreeter, Language>(
         key: Language.En, 
         registration: serviceCollection => 
-        {            
-        	sc.AddTransient<EnglishGreeter>();
+        {
+          serviceCollection.AddTransient<EnglishGreeter>();
         });
 }
 ```
@@ -37,7 +37,7 @@ services.AddKeyedService<IGreeter, PolishGreeter, Language>(key: Language.Pl, re
 services.AddTransient<PolishGreeter>();
 ```
 
- In both cases, remember to not wire implementation types with service they implement.
+In both cases, remember to not wire implementation types with service they implement.
 
 To resolve registered services you have two options
 
@@ -93,4 +93,3 @@ public IActionResult SayHelloEn()
     return Ok(greetings);
 }
 ```
-

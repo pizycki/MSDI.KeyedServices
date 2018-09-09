@@ -1,9 +1,9 @@
 # MSDI Keyed Services
 _Microsoft Dependency Injection Keyed Services_
 
-[![NuGet](https://img.shields.io/nuget/v/MSDI.KeyedServices.svg?style=flat-square)](https://www.nuget.org/packages/MSDI.KeyedServices) [![AppVeyor](https://img.shields.io/appveyor/ci/pizycki/msdi-keyedservices.svg?style=flat-square)](https://ci.appveyor.com/project/pizycki/msdi-keyedservices/branch/master)
+[![NuGet](https://img.shields.io/nuget/v/MSDI.KeyedServices.svg?style=flat-square)](https://www.nuget.org/packages/MSDI.KeyedServices) [![NuGet](https://img.shields.io/nuget/dt/MSDI.KeyedServices.svg?style=flat-square)](https://www.nuget.org/packages/MSDI.KeyedServices) [![AppVeyor](https://img.shields.io/appveyor/ci/pizycki/msdi-keyedservices.svg?style=flat-square)](https://ci.appveyor.com/project/pizycki/msdi-keyedservices/branch/master) 
 
-Plugin for [Microsoft.Extensions.DependencyInjection](https://github.com/aspnet/DependencyInjection) enabling registration of multiple service implemantations under the same interface.
+Plugin for [Microsoft.Extensions.DependencyInjection](https://github.com/aspnet/DependencyInjection) enabling registration of multiple service implementations under the same interface.
 
 You can think about it as equivalent of [Autofac Keyed Services](http://autofaccn.readthedocs.io/en/latest/advanced/keyed-services.html) or [Ninject Named bindings](https://github.com/ninject/Ninject/wiki/Contextual-Binding#simple-constrained-resolution-named-bindings).
 
